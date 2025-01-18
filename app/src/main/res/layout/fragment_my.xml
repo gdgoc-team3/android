@@ -141,6 +141,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_my_progress_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard"
+            android:text="70"
+            android:textFontWeight="500"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="@id/pb_my_user_rank"
+            app:layout_constraintEnd_toEndOf="@id/pb_my_user_rank"
+            app:layout_constraintStart_toStartOf="@id/pb_my_user_rank"
+            app:layout_constraintTop_toTopOf="@id/pb_my_user_rank" />
+
+
+        <TextView
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -163,15 +177,76 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_my_user">
 
+        <Spinner
+            android:id="@+id/sp_my_calendar_year"
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_spinner"
+            android:dropDownWidth="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/pretendard"
+            android:text="년"
+            android:textColor="#111111"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/sp_my_calendar_year"
+            app:layout_constraintStart_toEndOf="@id/sp_my_calendar_year"
+            app:layout_constraintTop_toTopOf="@id/sp_my_calendar_year" />
+
+        <Spinner
+            android:id="@+id/sp_my_calendar_month"
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_spinner"
+            android:dropDownWidth="match_parent"
+            app:layout_constraintStart_toEndOf="@id/sp_my_calendar_year"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/pretendard"
+            android:text="월"
+            android:textColor="#111111"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/sp_my_calendar_year"
+            app:layout_constraintStart_toEndOf="@id/sp_my_calendar_month"
+            app:layout_constraintTop_toTopOf="@id/sp_my_calendar_year" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_btn_dark_green"
+            android:fontFamily="@font/pretendard"
+            android:text="선택"
+            android:textColor="@color/white"
+            android:textFontWeight="700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sp_my_calendar_month" />
+
         <LinearLayout
             android:id="@+id/ll_my_calender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/sp_my_calendar_year">
 
             <TextView
                 android:id="@+id/tv_my_calender_year"
@@ -309,9 +384,9 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_my_calender"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/rv_my_calender"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.survey.SurveyActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="기본 인적사항"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    
+    <ImageView
+        android:src="@drawable/ic_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_section1"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="1. 생년월일을 선택해주세요."
+        android:fontFamily="@font/pretendard_regular"
+        android:textSize="18dp"
+        android:layout_marginTop="103dp"
+        android:layout_marginStart="34dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:layout_width="292dp"
+        android:layout_height="52dp"
+        android:background="@drawable/background_radius_gray"
+        android:layout_marginTop="7dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_section1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_section1"/>
+
+
+    <TextView
+        android:id="@+id/tv_section2"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="2. 전공을 선택해주세요."
+        android:fontFamily="@font/pretendard_regular"
+        android:textSize="18dp"
+        android:layout_marginTop="221dp"
+        android:layout_marginStart="34dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:layout_width="292dp"
+        android:layout_height="52dp"
+        android:background="@drawable/background_radius_gray"
+        android:hint="8~20자리, 영문자, 숫자, 특수문자 포함"
+        android:textSize="14dp"
+        android:textColor="#A4A4A6"
+        android:fontFamily="@font/pretendard_regular"
+        android:padding="16dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_section2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_section2"/>
+
+    <TextView
+        android:id="@+id/tv_section3"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="3. 희망 직종을 선택해주세요."
+        android:fontFamily="@font/pretendard_regular"
+        android:textSize="18dp"
+        android:layout_marginTop="357dp"
+        android:layout_marginStart="34dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Spinner
+        android:layout_width="292dp"
+        android:layout_height="52dp"
+
+        android:layout_marginTop="7dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_section3"
+        app:layout_constraintTop_toBottomOf="@+id/tv_section3"/>
+
+
+    <ImageView
+        android:src="@drawable/ic_next_btn"
+        android:layout_width="292dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

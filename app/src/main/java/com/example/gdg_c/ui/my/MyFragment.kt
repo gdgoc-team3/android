@@ -1,5 +1,6 @@
 package com.example.gdg_c.ui.my
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -49,15 +50,25 @@ class MyFragment : Fragment() {
             kotlin.runCatching {
                 repository.getMyInfo("dfjnsdfnj34", 2025, 1)
             }.onSuccess {
-                Log.d("PANGMOO", "getMyInfo: ${it.data}")
 //                setUpCalendarAdapter(it.data)
                 withContext(Dispatchers.Main) {
                     setUpCalendarAdapter(it.data)
+                    setUpUserData(it.data)
                 }
             }.onFailure {
-                Log.e("PANGMOO", "getMyInfo: ${it.message}")
             }
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setUpUserData(data: MyInfoResponse) {
+        binding.tvMyUserName.text = data.nickname
+        binding.tvMyUserRank.text = "${data.ranking} / ${data.totalUsers}"
+
+        binding.tvMyCalenderYear.text = "${data.year}년"
+        binding.tvMyCalenderMonth.text = "${data.month}월"
+
+        binding.pbMyUserRank.progress = data.processRatio
     }
 
     private fun setUpCalendarAdapter(data: MyInfoResponse) {

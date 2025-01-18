@@ -10,14 +10,18 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gdg_c.R
 import com.example.gdg_c.data.model.calendar.CalendarData
 import com.example.gdg_c.data.model.calendar.CalendarDay
+import com.example.gdg_c.data.model.repsonse.schedule.TaskResponse
 import com.example.gdg_c.data.repository.TaskRepository
 import com.example.gdg_c.databinding.FragmentTaskBinding
 import com.example.gdg_c.ui.task.adapter.TaskCalendarAdapter
+import com.example.gdg_c.ui.task.adapter.TaskListAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.util.Calendar
 
@@ -32,10 +36,15 @@ class TaskFragment : Fragment() {
 
     private val repository = TaskRepository()
 
+    private val taskListAdapter = TaskListAdapter()
+
     private var startDate: Calendar? = Calendar.getInstance()
     private var endDate: Calendar? = Calendar.getInstance()
 
+    private var taskList = mutableListOf<TaskResponse.Task>()
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,9 +84,10 @@ class TaskFragment : Fragment() {
 
     }
 
+    // Dispatchers.io 안 써도 됨
     private fun initPostButton() {
         binding.btnPostTask.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            viewLifecycleOwner.lifecycleScope.launch {
                 runCatching {
                     repository.postTask(
                         endDate = endDate.toString(),
@@ -101,12 +111,34 @@ class TaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initTaskCalendarAdapter()
-        initTaskListAdapter()
+        getTaskList()
     }
 
-    private fun initTaskListAdapter() {
-//        TODO("Not yet implemented")
+    private fun getTaskList() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            runCatching {
+                repository.getTasks()
+            }.onSuccess {
+                // 성공 시
+                withContext(Dispatchers.Main) {
+                    setUpTaskList(it.data)
+                }
+            }.onFailure {
+                // 실패 시
+                Log.e("PANGMOO", "getTaskList: ${it.message}")
+            }
+        }
     }
+
+    private fun setUpTaskList(data: TaskResponse) {
+        taskList = data.tasks.toMutableList()
+
+        binding.rvTaskList.adapter = taskListAdapter.apply {
+            submitList(taskList)
+        }
+        binding.rvTaskList.layoutManager = LinearLayoutManager(context)
+    }
+
 
     private fun initTaskCalendarAdapter() {
         taskCalendarAdapter = TaskCalendarAdapter { hasTask ->

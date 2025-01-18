@@ -23,4 +23,6 @@ class TaskRepository {
             )
         )
     }
+
+    suspend fun getTasks() = RetrofitInstance.taskService.getTasks(1)
 }

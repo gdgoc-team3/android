@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -45,4 +48,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Views/Fragments Integration
+    implementation("androidx.navigation:navigation-fragment:2.8.4")
+    implementation("androidx.navigation:navigation-ui:2.8.4")
+
+    // retrofit2
+    implementation("com.squareup.retrofit2:retrofit:2.9.0") // Retrofit2 라이브러리
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0") // JSON 변환을 위한 Gson 컨버터
 }

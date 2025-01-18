@@ -1,5 +1,6 @@
 package com.example.gdg_c.data.network
 
+import com.example.gdg_c.data.remote.MyService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -11,6 +12,10 @@ object RetrofitInstance {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    val myService: MyService by lazy {
+        retrofit.create(MyService::class.java)
     }
 
 }

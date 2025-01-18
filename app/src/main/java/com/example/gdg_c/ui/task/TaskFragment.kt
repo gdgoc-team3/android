@@ -22,6 +22,7 @@ import com.example.gdg_c.ui.task.adapter.TaskListAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.Calendar
 
@@ -79,8 +80,6 @@ class TaskFragment : Fragment() {
             setSelectableDateRange(startMonth, endMonth)
         }
 
-        startDate = binding.cvTaskDateRangeCalendar.startDate
-        endDate = binding.cvTaskDateRangeCalendar.endDate
 
     }
 
@@ -88,17 +87,28 @@ class TaskFragment : Fragment() {
     private fun initPostButton() {
         binding.btnPostTask.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
+
+                startDate = binding.cvTaskDateRangeCalendar.startDate
+                endDate = binding.cvTaskDateRangeCalendar.endDate
+
+                // SimpleDateFormat을 사용하여 형식 지정
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                val startDateFormat = dateFormat.format(startDate!!.time)
+                val endDateFormat = dateFormat.format(endDate!!.time)
+
                 runCatching {
+
                     repository.postTask(
-                        endDate = endDate.toString(),
-                        mustDoTasks = binding.etTaskTask.toString(),
-                        requirements = binding.etTaskAdditional.toString(),
-                        startDate = startDate.toString(),
+                        endDate = endDateFormat,
+                        mustDoTasks = binding.etTaskTask.text.toString(),
+                        requirements = binding.etTaskAdditional.text.toString(),
+                        startDate = startDateFormat,
                         title = binding.etTaskTitle.toString(),
                         userIdentity = "dfjnsdfnj34"
                     )
                 }.onSuccess {
                     // 성공 시
+                    Log.d("success", "postTask: ${it.message}")
                 }.onFailure {
                     // 실패 시
                     Log.e("PANGMOO", "postTask: ${it.message}")

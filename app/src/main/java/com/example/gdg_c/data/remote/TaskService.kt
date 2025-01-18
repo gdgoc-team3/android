@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface TaskService {
     @POST("schedule/")
-    suspend fun postTask(@Body taskPostRequest: TaskPostRequest)
+    suspend fun postTask(@Body taskPostRequest: TaskPostRequest) : BaseResponse<Any>
 
     @GET("schedule/")
     suspend fun getTasks(

@@ -31,7 +31,15 @@ class GoalPeriodActivity : AppCompatActivity() {
         }
 
         binding.ivNextBtn.setOnClickListener {
-            val intent = Intent(this, NameActivity::class.java)
+
+            val period1 = binding.myspinner2.selectedItem.toString().toIntOrNull() ?: 0
+            val period2 = binding.myspinner.selectedItem.toString().toIntOrNull() ?: 0
+
+            val targetEmploymentPeriod = period1 + period2
+
+            val intent = Intent(this, NameActivity::class.java).apply {
+                putExtra("targetEmploymentPeriod", targetEmploymentPeriod)
+            }
             startActivity(intent)
         }
 
@@ -96,6 +104,7 @@ class GoalPeriodActivity : AppCompatActivity() {
                     // empty here
                 }
             }
+
 
     }
 }

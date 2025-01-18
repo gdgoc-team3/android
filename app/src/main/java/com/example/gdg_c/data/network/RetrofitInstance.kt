@@ -1,6 +1,7 @@
 package com.example.gdg_c.data.network
 
 import com.example.gdg_c.data.remote.MyService
+import com.example.gdg_c.data.remote.SurveyService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,6 +17,10 @@ object RetrofitInstance {
 
     val myService: MyService by lazy {
         retrofit.create(MyService::class.java)
+    }
+
+    val surveyService: SurveyService by lazy{
+        retrofit.create(SurveyService::class.java)
     }
 
 }

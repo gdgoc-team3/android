@@ -26,7 +26,11 @@ class TaskListResponse : ArrayList<TaskListResponse.TaskListResponseItem>(){
                 val minute: Int,
                 val month: Int,
                 val year: Int
-            )
+            ) {
+                override fun toString(): String {
+                    return "$year-$month-$day"
+                }
+            }
     
             data class StartDate(
                 val day: Int,
@@ -34,7 +38,11 @@ class TaskListResponse : ArrayList<TaskListResponse.TaskListResponseItem>(){
                 val minute: Int,
                 val month: Int,
                 val year: Int
-            )
+            ) {
+                override fun toString(): String {
+                    return "$year-$month-$day"
+                }
+            }
         }
     }
 }

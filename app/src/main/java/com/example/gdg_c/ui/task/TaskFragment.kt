@@ -99,12 +99,13 @@ class TaskFragment : Fragment() {
 
                 runCatching {
 
+                    Log.d("parameter", "startDate: $startDateFormat, endDate: $endDateFormat, mustDoTasks: ${binding.etTaskTask.text}, requirements: ${binding.etTaskAdditional.text}, title: ${binding.etTaskTitle.text}, userIdentity: dfjnsdfnj34")
                     repository.postTask(
                         endDate = endDateFormat,
                         mustDoTasks = binding.etTaskTask.text.toString(),
                         requirements = binding.etTaskAdditional.text.toString(),
                         startDate = startDateFormat,
-                        title = binding.etTaskTitle.toString(),
+                        title = binding.etTaskTitle.text.toString(),
                         userIdentity = "dfjnsdfnj34"
                     )
                 }.onSuccess {

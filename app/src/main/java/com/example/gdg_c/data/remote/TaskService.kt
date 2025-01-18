@@ -2,6 +2,7 @@ package com.example.gdg_c.data.remote
 
 import com.example.gdg_c.data.model.repsonse.BaseResponse
 import com.example.gdg_c.data.model.repsonse.schedule.TaskListResponse
+import com.example.gdg_c.data.model.repsonse.schedule.TaskProgressResponse
 import com.example.gdg_c.data.model.repsonse.schedule.TaskResponse
 import com.example.gdg_c.data.model.request.TaskPostRequest
 import retrofit2.http.Body
@@ -19,4 +20,11 @@ interface TaskService {
         @Query("year") year: Int,
         @Query("month") month: Int
     ): BaseResponse<TaskListResponse>
+
+    @GET("schedule/progress")
+    suspend fun getTaskProgress(
+        @Query("userIdentity") userIdentity: String,
+        @Query("year") year: Int,
+        @Query("month") month: Int
+    ): BaseResponse<TaskProgressResponse>
 }

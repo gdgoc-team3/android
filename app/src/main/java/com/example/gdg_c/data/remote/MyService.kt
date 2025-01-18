@@ -9,8 +9,9 @@ import retrofit2.http.Query
 interface MyService {
     @GET("user/my/{userIdentity}")
     suspend fun getMyInfo(
-        @Path("userIdentity") userIdentity: String,
-        @Query("year") year: Int,
-        @Query("month") month: Int,
+        @Path("userIdentity")
+        userIdentity: String,
+        year: Int,
+        month: Int
     ): BaseResponse<MyInfoResponse>
 }

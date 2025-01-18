@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.gdg_c.data.local.PreferenceManager
 import com.example.gdg_c.data.model.calendar.CalendarData
 import com.example.gdg_c.data.model.calendar.CalendarDay
 import com.example.gdg_c.data.model.repsonse.my.MyInfoResponse
@@ -46,9 +47,12 @@ class MyFragment : Fragment() {
     }
 
     private fun getMyInfo() {
+
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val preferenceManager = PreferenceManager(requireContext())
+            val userIdentity = preferenceManager.getUserIdentity()
             kotlin.runCatching {
-                repository.getMyInfo("dfjnsdfnj34", 2025, 1)
+                repository.getMyInfo(userIdentity!!, 2025, 1)
             }.onSuccess {
 //                setUpCalendarAdapter(it.data)
                 withContext(Dispatchers.Main) {

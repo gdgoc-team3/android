@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/pretendard"
-                    android:text="오늘 일정의 제목을 입력해주세요."
+                    android:text="19일 일정의 제목을 입력해주세요."
                     android:textFontWeight="400"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -310,18 +310,33 @@
                     android:background="@drawable/background_top_radius_20_white"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/tv_task_list_title"
+                    <LinearLayout
+                        android:id="@+id/ll_task_list_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
-                        android:fontFamily="@font/pretendard"
-                        android:text="일정 제목"
-                        android:textFontWeight="700"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_task_list_title_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pretendard"
+                            android:text="19일 일정"
+                            android:textFontWeight="700" />
+
+                        <TextView
+                            android:id="@+id/tv_task_list_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/pretendard"
+                            android:text="일정 제목"
+                            android:textFontWeight="700" />
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_task_list"
@@ -331,7 +346,7 @@
                         android:layout_marginBottom="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_task_list_title"
+                        app:layout_constraintTop_toBottomOf="@id/ll_task_list_title"
                         tools:listitem="@layout/item_check_list" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

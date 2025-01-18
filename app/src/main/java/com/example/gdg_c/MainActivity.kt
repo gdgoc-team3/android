@@ -12,14 +12,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.gdg_c.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    private var _binding: ActivityMainBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupBottomNavigation()
@@ -36,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private fun setBottomNaviVisible(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bnvMain.visibility = when (destination.id) {
-                R.id.fragment_task, R.id.fragment_report, R.id.fragment_my -> View.VISIBLE
+                R.id.fragment_task, R.id.fragment_my, R.id.fragment_matching -> View.VISIBLE
                 else -> View.GONE
             }
         }

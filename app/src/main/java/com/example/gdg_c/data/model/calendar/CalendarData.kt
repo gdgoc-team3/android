@@ -1,4 +1,4 @@
-package com.example.gdg_c.data.calendar
+package com.example.gdg_c.data.model.calendar
 
 import java.util.Calendar
 import java.util.Date

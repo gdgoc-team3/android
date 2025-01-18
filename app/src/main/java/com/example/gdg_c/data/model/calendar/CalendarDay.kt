@@ -1,4 +1,4 @@
-package com.example.gdg_c.data.calendar
+package com.example.gdg_c.data.model.calendar
 
 data class CalendarDay(
     val day: Int?,

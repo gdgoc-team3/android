@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gdg_c.R
-import com.example.gdg_c.data.calendar.CalendarData
-import com.example.gdg_c.data.calendar.CalendarDay
+import com.example.gdg_c.data.model.calendar.CalendarData
+import com.example.gdg_c.data.model.calendar.CalendarDay
 import com.example.gdg_c.databinding.FragmentMyBinding
 import com.example.gdg_c.ui.my.adapter.CalendarAdapter
 

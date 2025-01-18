@@ -12,7 +12,10 @@ import com.example.gdg_c.data.model.repsonse.schedule.TaskResponse
 import com.example.gdg_c.databinding.ItemCalendarDayBinding
 import com.example.gdg_c.databinding.ItemCheckListBinding
 
-class TaskListAdapter : ListAdapter<TaskListResponse.TaskListResponseItem.Task, TaskListAdapter.TaskViewHolder>(diffUtil) {
+class TaskListAdapter :
+    ListAdapter<TaskListResponse.TaskListResponseItem.Task, TaskListAdapter.TaskViewHolder>(diffUtil) {
+
+    var today = ""
 
     inner class TaskViewHolder(private val binding: ItemCheckListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -21,6 +24,10 @@ class TaskListAdapter : ListAdapter<TaskListResponse.TaskListResponseItem.Task, 
             binding.tvTaskItem.text = item.title
             binding.tvTaskStartDate.text = item.startDate.toString()
             binding.tvTaskEndDate.text = item.endDate.toString()
+
+            if (today == item.startDate.day.toString()) {
+                binding.root.visibility = ViewGroup.GONE
+            }
 
         }
     }
@@ -35,21 +42,35 @@ class TaskListAdapter : ListAdapter<TaskListResponse.TaskListResponseItem.Task, 
         holder.bind(currentList[position])
     }
 
-    companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<TaskListResponse.TaskListResponseItem.Task>() {
-            override fun areItemsTheSame(
-                oldItem: TaskListResponse.TaskListResponseItem.Task,
-                newItem: TaskListResponse.TaskListResponseItem.Task
-            ): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(
-                oldItem: TaskListResponse.TaskListResponseItem.Task,
-                newItem: TaskListResponse.TaskListResponseItem.Task
-            ): Boolean {
-                return oldItem == newItem
-            }
+    fun updateList(
+        taskList: List<TaskListResponse.TaskListResponseItem.Task>,
+        today: String
+    ) {
+        submitList(taskList)
+        val list = taskList
+        val newList = list.filter { item ->
+            item.startDate.day.toString() == today
         }
+        submitList(newList)
+
+    }
+
+    companion object {
+        val diffUtil =
+            object : DiffUtil.ItemCallback<TaskListResponse.TaskListResponseItem.Task>() {
+                override fun areItemsTheSame(
+                    oldItem: TaskListResponse.TaskListResponseItem.Task,
+                    newItem: TaskListResponse.TaskListResponseItem.Task
+                ): Boolean {
+                    return oldItem == newItem
+                }
+
+                override fun areContentsTheSame(
+                    oldItem: TaskListResponse.TaskListResponseItem.Task,
+                    newItem: TaskListResponse.TaskListResponseItem.Task
+                ): Boolean {
+                    return oldItem == newItem
+                }
+            }
     }
 }

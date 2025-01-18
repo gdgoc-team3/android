@@ -45,8 +45,7 @@ class SettingActivity : AppCompatActivity() {
         binding.major.text = major
         binding.desiredJob.text = desiredJob
 
-        val preferenceManager = PreferenceManager(applicationContext)
-        preferenceManager.saveUserIdentity(userIdentity)
+
 
 
         with(binding) {
@@ -82,6 +81,8 @@ class SettingActivity : AppCompatActivity() {
                     desiredJob,
                     targetEmploymentPeriod
                 )
+                val preferenceManager = PreferenceManager(applicationContext)
+                preferenceManager.saveUserIdentity(userIdentity)
             }.onSuccess {
                 Log.d("success", "postUser Success")
             }.onFailure {

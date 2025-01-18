@@ -28,7 +28,7 @@ class TaskListResponse : ArrayList<TaskListResponse.TaskListResponseItem>(){
                 val year: Int
             ) {
                 override fun toString(): String {
-                    return "$year-$month-$day"
+                    return "$year-$month-$day, $hour:$minute"
                 }
             }
     
@@ -40,7 +40,7 @@ class TaskListResponse : ArrayList<TaskListResponse.TaskListResponseItem>(){
                 val year: Int
             ) {
                 override fun toString(): String {
-                    return "$year-$month-$day"
+                    return "$year-$month-$day, $hour:$minute"
                 }
             }
         }

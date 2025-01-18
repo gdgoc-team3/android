@@ -57,6 +57,8 @@ class TaskCalendarAdapter(
         holder.bind(currentList[position], position)
     }
 
+
+
     companion object {
         val diffUtil =
             object : DiffUtil.ItemCallback<TaskProgressResponse.TaskProgressResponseItem>() {

@@ -2,10 +2,12 @@ package com.example.gdg_c
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         setupBottomNavigation()
+
+
     }
 
     private fun setupBottomNavigation() {

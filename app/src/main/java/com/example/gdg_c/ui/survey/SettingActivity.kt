@@ -74,8 +74,10 @@ class SettingActivity : AppCompatActivity() {
     ) {
         lifecycleScope.launch {
             kotlin.runCatching {
+                Log.d("parameter", "birthDate: $birthDate, nickname: $nickname, userIdentity: $userIdentity, major: $major, desiredJob: $desiredJob, targetEmploymentPeriod: $targetEmploymentPeriod")
+
                 repository.postUser(
-                    birthDate,
+                    "2000-11-22",
                     nickname,
                     userIdentity,
                     major,

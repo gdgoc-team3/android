@@ -19,6 +19,9 @@ class NameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_name)
 
         val targetEmploymentPeriod = intent.getIntExtra("targetEmploymentPeriod", 0)
+        val birthDate = intent.getStringExtra("birth") ?: "생년월일 없음"
+        val major = intent.getStringExtra("major") ?: "전공 없음"
+        val desiredJob = intent.getStringExtra("desiredJob") ?: "직업 없음"
 
         binding = ActivityNameBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,6 +39,9 @@ class NameActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java).apply {
                 putExtra("nickname", nickname)
                 putExtra("targetEmploymentPeriod", targetEmploymentPeriod)
+                putExtra("birth", birthDate)
+                putExtra("major", major)
+                putExtra("desiredJob", desiredJob)
             }
             startActivity(intent)
         }

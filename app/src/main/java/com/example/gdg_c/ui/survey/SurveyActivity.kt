@@ -31,9 +31,19 @@ class SurveyActivity : AppCompatActivity() {
         }
 
         binding.ivNextBtn.setOnClickListener {
-            val intent = Intent(this, GoalPeriodActivity::class.java)
+
+            val birthDate = binding.birth.text.toString()
+            val major = binding.major.text.toString()
+            val desiredJob = binding.spinner.selectedItem.toString()
+
+            val intent = Intent(this, GoalPeriodActivity::class.java).apply {
+                putExtra("birth", birthDate)
+                putExtra("major", major)
+                putExtra("desiredJob", desiredJob)
+            }
             startActivity(intent)
         }
+
 
         binding.ivBack.setOnClickListener {
             finish()

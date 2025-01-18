@@ -6,8 +6,8 @@ import com.example.gdg_c.data.network.RetrofitInstance
 
 class MyRepository {
 
-    suspend fun getMyInfo(userIdentity: String): BaseResponse<MyInfoResponse> {
-        val response = RetrofitInstance.myService.getMyInfo(userIdentity)
+    suspend fun getMyInfo(userIdentity: String, year: Int, month: Int): BaseResponse<MyInfoResponse> {
+        val response = RetrofitInstance.myService.getMyInfo(userIdentity, year, month)
 
         return response
     }

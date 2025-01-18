@@ -2,10 +2,12 @@ package com.example.gdg_c.data.model.repsonse.my
 
 
 import com.example.gdg_c.data.model.calendar.CalendarDay
+import com.google.gson.annotations.SerializedName
 
 data class MyInfoResponse(
     val month: Int,
-    val monthlyProgressResponses: List<CalendarDay>,
+    @SerializedName("monthlyProgressResponses")
+    val days: List<CalendarDay>,
     val nickname: String,
     val processRatio: Int,
     val ranking: Int,

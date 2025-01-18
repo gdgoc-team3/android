@@ -1,21 +1,101 @@
 package com.example.gdg_c.ui.survey
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.gdg_c.R
+import com.example.gdg_c.databinding.ActivityGoalPeriodBinding
 
 class GoalPeriodActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityGoalPeriodBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_goal_period)
+
+        binding = ActivityGoalPeriodBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        binding.ivNextBtn.setOnClickListener {
+            val intent = Intent(this, NameActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+
+        val array = arrayListOf(
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+        )
+
+        val spinnerAdapter = ArrayAdapter(this, R.layout.item_spinner, array)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.myspinner.adapter = spinnerAdapter
+
+        binding.myspinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val selectedItem = parent?.getItemAtPosition(position) as Int
+//                    binding.selectedTextView.text = selectedItem.toString()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // empty here
+                }
+            }
+
+
+        val spinnerAdapter2 = ArrayAdapter(this, R.layout.item_spinner, array)
+        spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.myspinner2.adapter = spinnerAdapter2
+
+        binding.myspinner2.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val selectedItem = parent?.getItemAtPosition(position) as Int
+//                    binding.selectedTextView.text = selectedItem.toString()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // empty here
+                }
+            }
+
     }
 }

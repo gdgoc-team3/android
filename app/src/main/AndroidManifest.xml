@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GDGC"
         tools:targetApi="31">
         <activity
+            android:name=".ui.matching.MatchingRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.survey.SettingActivity"
             android:exported="false" />
         <activity
@@ -25,11 +28,11 @@
             android:name=".ui.survey.SurveyActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.survey.StartActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false"/>
+        <activity
+            android:name=".ui.survey.StartActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

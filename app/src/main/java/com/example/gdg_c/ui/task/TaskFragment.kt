@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gdg_c.R
 import com.example.gdg_c.data.model.calendar.CalendarData
 import com.example.gdg_c.data.model.calendar.CalendarDay
+import com.example.gdg_c.data.model.repsonse.schedule.TaskListResponse
 import com.example.gdg_c.data.model.repsonse.schedule.TaskResponse
 import com.example.gdg_c.data.repository.TaskRepository
 import com.example.gdg_c.databinding.FragmentTaskBinding
@@ -42,14 +43,14 @@ class TaskFragment : Fragment() {
     private var startDate: Calendar? = Calendar.getInstance()
     private var endDate: Calendar? = Calendar.getInstance()
 
-    private var taskList = mutableListOf<TaskResponse.Task>()
+    private var taskList = mutableListOf<TaskListResponse.TaskListResponseItem.Task>()
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentTaskBinding.inflate(inflater, container, false)
 
@@ -140,8 +141,10 @@ class TaskFragment : Fragment() {
         }
     }
 
-    private fun setUpTaskList(data: TaskResponse) {
-        taskList = data.tasks.toMutableList()
+    private fun setUpTaskList(data: TaskListResponse) {
+        taskList = data[0].tasks.toMutableList()
+
+        binding.tvTaskListTitle.text = data[0].title
 
         binding.rvTaskList.adapter = taskListAdapter.apply {
             submitList(taskList)

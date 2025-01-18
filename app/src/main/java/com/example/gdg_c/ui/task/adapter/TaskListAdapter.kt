@@ -7,16 +7,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gdg_c.data.model.calendar.CalendarDay
+import com.example.gdg_c.data.model.repsonse.schedule.TaskListResponse
 import com.example.gdg_c.data.model.repsonse.schedule.TaskResponse
 import com.example.gdg_c.databinding.ItemCalendarDayBinding
 import com.example.gdg_c.databinding.ItemCheckListBinding
 
-class TaskListAdapter : ListAdapter<TaskResponse.Task, TaskListAdapter.TaskViewHolder>(diffUtil) {
+class TaskListAdapter : ListAdapter<TaskListResponse.TaskListResponseItem.Task, TaskListAdapter.TaskViewHolder>(diffUtil) {
 
     inner class TaskViewHolder(private val binding: ItemCheckListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: TaskResponse.Task) {
+        fun bind(item: TaskListResponse.TaskListResponseItem.Task) {
             binding.tvTaskItem.text = item.title
             binding.tvTaskStartDate.text = item.startDate.toString()
             binding.tvTaskEndDate.text = item.endDate.toString()
@@ -35,17 +36,17 @@ class TaskListAdapter : ListAdapter<TaskResponse.Task, TaskListAdapter.TaskViewH
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<TaskResponse.Task>() {
+        val diffUtil = object : DiffUtil.ItemCallback<TaskListResponse.TaskListResponseItem.Task>() {
             override fun areItemsTheSame(
-                oldItem: TaskResponse.Task,
-                newItem: TaskResponse.Task
+                oldItem: TaskListResponse.TaskListResponseItem.Task,
+                newItem: TaskListResponse.TaskListResponseItem.Task
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: TaskResponse.Task,
-                newItem: TaskResponse.Task
+                oldItem: TaskListResponse.TaskListResponseItem.Task,
+                newItem: TaskListResponse.TaskListResponseItem.Task
             ): Boolean {
                 return oldItem == newItem
             }

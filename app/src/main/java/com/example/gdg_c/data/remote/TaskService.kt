@@ -1,6 +1,7 @@
 package com.example.gdg_c.data.remote
 
 import com.example.gdg_c.data.model.repsonse.BaseResponse
+import com.example.gdg_c.data.model.repsonse.schedule.TaskListResponse
 import com.example.gdg_c.data.model.repsonse.schedule.TaskResponse
 import com.example.gdg_c.data.model.request.TaskPostRequest
 import retrofit2.http.Body
@@ -14,6 +15,8 @@ interface TaskService {
 
     @GET("schedule/")
     suspend fun getTasks(
-        @Query("scheduleId") scheduleId: Int
-    ): BaseResponse<TaskResponse>
+        @Query("userIdentity") userIdentity: String,
+        @Query("year") year: Int,
+        @Query("month") month: Int
+    ): BaseResponse<TaskListResponse>
 }

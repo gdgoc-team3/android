@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.gdg_c.MainActivity
 import com.example.gdg_c.R
+import com.example.gdg_c.data.local.PreferenceManager
 import com.example.gdg_c.data.repository.UserRepository
 import com.example.gdg_c.databinding.ActivitySettingBinding
 import kotlinx.coroutines.launch
@@ -44,12 +45,9 @@ class SettingActivity : AppCompatActivity() {
         binding.major.text = major
         binding.desiredJob.text = desiredJob
 
+        val preferenceManager = PreferenceManager(applicationContext)
+        preferenceManager.saveUserIdentity(userIdentity)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         with(binding) {
             postUser(birthDate, nickname, userIdentity, major, desiredJob, targetEmploymentPeriod)

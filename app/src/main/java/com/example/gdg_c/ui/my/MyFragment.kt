@@ -46,6 +46,7 @@ class MyFragment : Fragment() {
     }
 
     private fun getMyInfo() {
+
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
                 repository.getMyInfo("dfjnsdfnj34", 2025, 1)

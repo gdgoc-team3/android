@@ -33,9 +33,13 @@ class TaskRepository {
         return response
     }
 
-    suspend fun getTasks(
+    suspend fun getTasks() = RetrofitInstance.taskService.getTasks(
+        userIdentity = "dfjnsdfnj34",
+        year = 2025,
+        month = 1
+    )
 
-    ) = RetrofitInstance.taskService.getTasks(
+    suspend fun getTaskProgress() = RetrofitInstance.taskService.getTaskProgress(
         userIdentity = "dfjnsdfnj34",
         year = 2025,
         month = 1

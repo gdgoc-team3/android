@@ -15,6 +15,7 @@ import com.example.gdg_c.R
 import com.example.gdg_c.data.model.calendar.CalendarData
 import com.example.gdg_c.data.model.calendar.CalendarDay
 import com.example.gdg_c.data.model.repsonse.schedule.TaskListResponse
+import com.example.gdg_c.data.model.repsonse.schedule.TaskProgressResponse
 import com.example.gdg_c.data.model.repsonse.schedule.TaskResponse
 import com.example.gdg_c.data.repository.TaskRepository
 import com.example.gdg_c.databinding.FragmentTaskBinding
@@ -54,7 +55,6 @@ class TaskFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentTaskBinding.inflate(inflater, container, false)
 
-        initTaskCalendarAdapter()
         setUpCalendar()
         initPostButton()
 
@@ -99,7 +99,10 @@ class TaskFragment : Fragment() {
 
                 runCatching {
 
-                    Log.d("parameter", "startDate: $startDateFormat, endDate: $endDateFormat, mustDoTasks: ${binding.etTaskTask.text}, requirements: ${binding.etTaskAdditional.text}, title: ${binding.etTaskTitle.text}, userIdentity: dfjnsdfnj34")
+                    Log.d(
+                        "parameter",
+                        "startDate: $startDateFormat, endDate: $endDateFormat, mustDoTasks: ${binding.etTaskTask.text}, requirements: ${binding.etTaskAdditional.text}, title: ${binding.etTaskTitle.text}, userIdentity: dfjnsdfnj34"
+                    )
                     repository.postTask(
                         endDate = endDateFormat,
                         mustDoTasks = binding.etTaskTask.text.toString(),
@@ -122,7 +125,7 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initTaskCalendarAdapter()
+        getTaskProgress()
         getTaskList()
     }
 
@@ -154,20 +157,100 @@ class TaskFragment : Fragment() {
     }
 
 
-    private fun initTaskCalendarAdapter() {
-        taskCalendarAdapter = TaskCalendarAdapter { hasTask ->
-            if (hasTask) {
-                binding.clAddTaskContainer.visibility = View.GONE
-                binding.clTaskListContainer.visibility = View.VISIBLE
-            } else {
-                binding.clAddTaskContainer.visibility = View.VISIBLE
-                binding.clTaskListContainer.visibility = View.GONE
+    private fun getTaskProgress() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            runCatching {
+                repository.getTaskProgress()
+            }.onSuccess {
+                // 성공 시
+                withContext(Dispatchers.Main) {
+                    initTaskCalendarAdapter(it.data)
+                }
+            }.onFailure {
+                // 실패 시
+                Log.e("PANGMOO", "getTaskProgress: ${it.message}")
+            }
+        }
+    }
+
+    private fun initTaskCalendarAdapter(data: TaskProgressResponse) {
+
+        taskCalendarAdapter = TaskCalendarAdapter { item ->
+            Log.d("progress", "progress: $item.progress")
+            if (item.progress != null) {
+                if (item.progress > 0) {
+                    binding.clAddTaskContainer.visibility = View.GONE
+                    binding.clTaskListContainer.visibility = View.VISIBLE
+                    binding.tvTaskListTitleDay.text = "${item.day}일 일정"
+                } else {
+                    binding.clAddTaskContainer.visibility = View.VISIBLE
+                    binding.clTaskListContainer.visibility = View.GONE
+                    binding.tvTaskTitle.text = "${item.day}일 일정의 제목을 입력해주세요."
+                }
             }
         }
         binding.rvTaskCalender.apply {
             adapter = taskCalendarAdapter
             layoutManager = GridLayoutManager(context, 7)
         }
+        var list = data.toMutableList()
+        list = addNullDays(
+            list, 2025, 1
+        )
+
+        taskCalendarAdapter.submitList(list)
+    }
+
+    // 연과 월을 가지고 시작 요일을 구하는 함수
+    private fun getFirstDayOfMonth(
+        list: MutableList<TaskProgressResponse.TaskProgressResponseItem>,
+        year: Int,
+        month: Int
+    ): Int {
+        // Calendar 객체 생성
+        val calendar = Calendar.getInstance()
+
+        // 연도와 월 설정 (월은 0부터 시작하므로 1을 빼야 합니다)
+        calendar.set(Calendar.YEAR, year)
+        calendar.set(Calendar.MONTH, month - 1) // 월은 0부터 시작
+        calendar.set(Calendar.DAY_OF_MONTH, 1) // 날짜를 1일로 설정
+
+        // 요일 숫자 가져오기 (1=일요일, 7=토요일)
+        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+
+        // 요일을 문자로 변환
+        return when (dayOfWeek) {
+            Calendar.SUNDAY -> 0
+            Calendar.MONDAY -> 1
+            Calendar.TUESDAY -> 2
+            Calendar.WEDNESDAY -> 3
+            Calendar.THURSDAY -> 4
+            Calendar.FRIDAY -> 5
+            Calendar.SATURDAY -> 6
+            else -> 7
+        }
+    }
+
+    // 시작 요일을 가지고 null 값을 days 에 넣어주는 함수
+    private fun addNullDays(
+        list: MutableList<TaskProgressResponse.TaskProgressResponseItem>,
+        year: Int,
+        month: Int
+    ): MutableList<TaskProgressResponse.TaskProgressResponseItem> {
+        val addDays = getFirstDayOfMonth(
+            list = list,
+            year = year,
+            month = month
+        )
+
+        for (i in 0 until addDays) {
+            list.add(
+                0, TaskProgressResponse.TaskProgressResponseItem(
+                    null, null
+                )
+            )
+        }
+        return list
     }
 
     override fun onDestroy() {

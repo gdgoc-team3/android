@@ -178,7 +178,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/rv_task_calender">
 
                 <TextView
@@ -259,13 +258,45 @@
                     android:textFontWeight="500"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/tv_task_additional" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_post_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_btn_dark_green"
+                    android:fontFamily="@font/pretendard"
+                    android:text="일정 생성"
+                    android:textColor="@color/white"
+                    android:textFontWeight="700"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/cv_task_date_range_calendar" />
+
+                <com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
+                    android:id="@+id/cv_task_date_range_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="2dp"
+                    android:paddingTop="3dp"
+                    app:layout_constraintTop_toBottomOf="@id/et_task_additional"
+                    custom:date_selection_mode="free_range"
+                    custom:range_date_color="@color/white"
+                    custom:selected_date_color="@color/white"
+                    custom:text_size_date="11sp"
+                    custom:text_size_title="14sp"
+                    custom:text_size_week="11sp" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
                 android:id="@+id/cl_task_list_container"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/rv_task_calender">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -285,6 +316,7 @@
                     android:background="@drawable/bg_btn_dark_green"
                     android:fontFamily="@font/pretendard"
                     android:text="피드백 받기"
+                    android:layout_marginBottom="30dp"
                     android:textColor="@color/white"
                     android:textFontWeight="700"
                     android:textSize="16sp"

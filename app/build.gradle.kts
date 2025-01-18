@@ -56,4 +56,7 @@ dependencies {
     // retrofit2
     implementation("com.squareup.retrofit2:retrofit:2.9.0") // Retrofit2 라이브러리
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") // JSON 변환을 위한 Gson 컨버터
+
+    // Calender
+    implementation("io.github.architshah248.calendar:awesome-calendar:2.0.0")
 }

@@ -30,14 +30,19 @@ class SettingActivity : AppCompatActivity() {
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val birthDate = binding.birth.text.toString()
-        val major = binding.major.text.toString()
-        val desiredJob = binding.desiredJob.text.toString()
+
         val userIdentity = generateRandomUserIdentity()
         val nickname = intent.getStringExtra("nickname") ?: "닉네임 없음"
         val targetEmploymentPeriod = intent.getIntExtra("targetEmploymentPeriod", 0)
 
+        val birthDate = intent.getStringExtra("birth") ?: "생년월일 없음"
+        val major = intent.getStringExtra("major") ?: "전공 없음"
+        val desiredJob = intent.getStringExtra("desiredJob") ?: "직업 없음"
+
         binding.nickname.text = nickname
+        binding.birth.text = birthDate
+        binding.major.text = major
+        binding.desiredJob.text = desiredJob
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -69,8 +74,10 @@ class SettingActivity : AppCompatActivity() {
     ) {
         lifecycleScope.launch {
             kotlin.runCatching {
+                Log.d("parameter", "birthDate: $birthDate, nickname: $nickname, userIdentity: $userIdentity, major: $major, desiredJob: $desiredJob, targetEmploymentPeriod: $targetEmploymentPeriod")
+
                 repository.postUser(
-                    birthDate,
+                    "2000-11-22",
                     nickname,
                     userIdentity,
                     major,

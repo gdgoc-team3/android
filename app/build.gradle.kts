@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.gdg_c"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.gdg_c"
@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -45,4 +48,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Views/Fragments Integration
+    implementation("androidx.navigation:navigation-fragment:2.8.4")
+    implementation("androidx.navigation:navigation-ui:2.8.4")
 }

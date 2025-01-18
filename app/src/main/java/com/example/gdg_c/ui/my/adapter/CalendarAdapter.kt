@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gdg_c.R
-import com.example.gdg_c.data.calendar.CalendarDay
+import com.example.gdg_c.data.model.calendar.CalendarDay
 import com.example.gdg_c.databinding.ItemCalendarDayBinding
 
 class CalendarAdapter : ListAdapter<CalendarDay, CalendarAdapter.ViewHolder>(diffUtil) {

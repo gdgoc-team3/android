@@ -1,46 +1,76 @@
 package com.example.gdg_c.ui.my
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.gdg_c.R
-import com.example.gdg_c.data.calendar.CalendarData
-import com.example.gdg_c.data.calendar.CalendarDay
+import com.example.gdg_c.data.model.calendar.CalendarData
+import com.example.gdg_c.data.model.calendar.CalendarDay
+import com.example.gdg_c.data.model.repsonse.my.MyInfoResponse
+import com.example.gdg_c.data.repository.MyRepository
 import com.example.gdg_c.databinding.FragmentMyBinding
 import com.example.gdg_c.ui.my.adapter.CalendarAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MyFragment : Fragment() {
 
     private var _binding: FragmentMyBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var calendarAdapter: CalendarAdapter
+    private val calendarAdapter: CalendarAdapter = CalendarAdapter()
     private lateinit var calendarData: CalendarData
     private lateinit var calendarDayList: MutableList<CalendarDay>
+
+    private val repository = MyRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         _binding = FragmentMyBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getMyInfo()
 
-        initDummy()
+    }
 
-        calendarAdapter = CalendarAdapter().apply {
-            submitList(calendarDayList)
+    private fun getMyInfo() {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            kotlin.runCatching {
+                repository.getMyInfo("dfjnsdfnj34", 2025, 1)
+            }.onSuccess {
+                Log.d("PANGMOO", "getMyInfo: ${it.data}")
+//                setUpCalendarAdapter(it.data)
+                withContext(Dispatchers.Main) {
+                    setUpCalendarAdapter(it.data)
+                }
+            }.onFailure {
+                Log.e("PANGMOO", "getMyInfo: ${it.message}")
+            }
         }
-        binding.rvMyCalender.adapter = calendarAdapter
-        binding.rvMyCalender.layoutManager = GridLayoutManager(context, 7)
+    }
 
+    private fun setUpCalendarAdapter(data: MyInfoResponse) {
+        calendarData = CalendarData(
+            data.year, data.month, data.days.toMutableList()
+        )
+        calendarData.addNullDays()
+        calendarDayList = calendarData.days
+        calendarAdapter.submitList(calendarDayList)
+        binding.rvMyCalender.apply {
+            adapter = calendarAdapter
+            layoutManager = GridLayoutManager(context, 7)
+        }
     }
 
     private fun initDummy() {

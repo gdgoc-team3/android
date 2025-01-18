@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
+        android:id="@+id/iv_back"
         android:src="@drawable/ic_back"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -55,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Spinner
-        android:id="@+id/sp_years"
+        android:id="@+id/myspinner2"
         android:layout_width="113dp"
         android:layout_height="44dp"
         android:background="@drawable/bg_spinner"
@@ -75,12 +76,12 @@
         android:fontFamily="@font/pretendard"
         android:layout_marginTop="0dp"
         android:layout_marginStart="1dp"
-        app:layout_constraintLeft_toRightOf="@+id/sp_years"
-        app:layout_constraintTop_toTopOf="@+id/sp_years"/>
+        app:layout_constraintLeft_toRightOf="@+id/myspinner2"
+        app:layout_constraintTop_toTopOf="@+id/myspinner2"/>
 
 
     <Spinner
-        android:id="@+id/sp_months"
+        android:id="@+id/myspinner"
         android:layout_width="113dp"
         android:layout_height="44dp"
         android:background="@drawable/bg_spinner"
@@ -100,11 +101,12 @@
         android:fontFamily="@font/pretendard"
         android:layout_marginTop="0dp"
         android:layout_marginStart="1dp"
-        app:layout_constraintLeft_toRightOf="@+id/sp_months"
-        app:layout_constraintTop_toTopOf="@+id/sp_months"/>
+        app:layout_constraintLeft_toRightOf="@+id/myspinner"
+        app:layout_constraintTop_toTopOf="@+id/myspinner"/>
 
 
     <ImageView
+        android:id="@+id/iv_next_btn"
         android:src="@drawable/ic_next_btn"
         android:layout_width="292dp"
         android:layout_height="52dp"

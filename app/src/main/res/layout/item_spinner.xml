@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
+
+
     <TextView
-        android:id="@+id/tv_title"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/selected_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
@@ -13,5 +11,3 @@
         android:lineSpacingExtra="6sp"
         android:paddingHorizontal="20dp"
         android:paddingVertical="16dp"/>
-
-</LinearLayout>

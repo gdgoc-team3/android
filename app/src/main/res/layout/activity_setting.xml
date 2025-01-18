@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
+        android:id="@+id/iv_back"
         android:src="@drawable/ic_back"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -32,7 +33,7 @@
 
 
     <TextView
-        android:id="@+id/tv_nickname"
+        android:id="@+id/tv_nickname2"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:text="닉네임"
@@ -45,6 +46,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
+        android:id="@+id/tv_nickname"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:background="@drawable/background_radius_full_gray"
@@ -57,7 +59,7 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nickname"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_nickname2"/>
 
 
     <TextView
@@ -149,6 +151,7 @@
 
 
     <ImageView
+        android:id="@+id/iv_start_btn"
         android:src="@drawable/ic_start_btn"
         android:layout_width="292dp"
         android:layout_height="52dp"

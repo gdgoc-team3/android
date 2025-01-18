@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
     
     <ImageView
+        android:id="@+id/iv_back"
         android:src="@drawable/ic_back"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -89,16 +90,19 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Spinner
+        android:id="@+id/spinner"
         android:layout_width="292dp"
         android:layout_height="52dp"
         android:background="@drawable/bg_spinner"
         android:dropDownWidth="match_parent"
         android:layout_marginTop="7dp"
+        android:dropDownVerticalOffset="35dp"
         app:layout_constraintLeft_toLeftOf="@+id/tv_section3"
         app:layout_constraintTop_toBottomOf="@+id/tv_section3"/>
 
 
     <ImageView
+        android:id="@+id/iv_next_btn"
         android:src="@drawable/ic_next_btn"
         android:layout_width="292dp"
         android:layout_height="52dp"

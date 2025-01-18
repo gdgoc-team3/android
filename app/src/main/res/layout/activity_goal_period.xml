@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.survey.GoalPeriodActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="취업 목표 기간 설정"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:src="@drawable/ic_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="목표로 하는 취업 기간을 설정해주세요!"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="130dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_select"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="연 수와 개월 수를 선택해주세요."
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Spinner
+        android:id="@+id/sp_years"
+        android:layout_width="113dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_spinner"
+        android:dropDownWidth="match_parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_select" 
+        app:layout_constraintTop_toBottomOf="@+id/tv_select" />
+    
+    <TextView
+        android:id="@+id/tv_years"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:text="년"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="1dp"
+        app:layout_constraintLeft_toRightOf="@+id/sp_years"
+        app:layout_constraintTop_toTopOf="@+id/sp_years"/>
+
+
+    <Spinner
+        android:id="@+id/sp_months"
+        android:layout_width="113dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_spinner"
+        android:dropDownWidth="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_years"
+        app:layout_constraintTop_toBottomOf="@+id/tv_select" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:text="개월"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="1dp"
+        app:layout_constraintLeft_toRightOf="@+id/sp_months"
+        app:layout_constraintTop_toTopOf="@+id/sp_months"/>
+
+
+    <ImageView
+        android:src="@drawable/ic_next_btn"
+        android:layout_width="292dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.survey.NameActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="닉네임 설정"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:src="@drawable/ic_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_nickname_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="닉네임을 설정해주세요."
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/pretendard"
+        android:layout_marginTop="168dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="267dp"
+        android:layout_height="44dp"
+        android:hint="닉네임"
+        android:textSize="14dp"
+        android:padding="14dp"
+        android:background="@drawable/background_radius_full_gray"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_nickname_setting"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nickname_setting"/>
+    
+    <ImageView
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_recommend"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintLeft_toRightOf="@+id/et_nickname"
+        app:layout_constraintTop_toTopOf="@+id/et_nickname"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="사용자분의 정보를 바탕으로 추천된 닉네임이에요."
+        android:fontFamily="@font/pretendard_regular"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="#CFCFCF"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/et_nickname"
+        app:layout_constraintTop_toBottomOf="@+id/et_nickname"/>
+
+    <ImageView
+        android:src="@drawable/ic_next_btn"
+        android:layout_width="292dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

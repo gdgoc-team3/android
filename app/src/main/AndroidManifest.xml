@@ -13,6 +13,15 @@
         android:theme="@style/Theme.GDGC"
         tools:targetApi="31">
         <activity
+            android:name=".ui.survey.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.survey.NameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.survey.GoalPeriodActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.survey.SurveyActivity"
             android:exported="false" />
         <activity

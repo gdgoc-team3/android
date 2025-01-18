@@ -58,9 +58,10 @@
     <Spinner
         android:id="@+id/myspinner2"
         android:layout_width="113dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_spinner"
         android:dropDownWidth="match_parent"
+        android:dropDownVerticalOffset="35dp"
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/tv_select" 
         app:layout_constraintTop_toBottomOf="@+id/tv_select" />
@@ -83,11 +84,12 @@
     <Spinner
         android:id="@+id/myspinner"
         android:layout_width="113dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_spinner"
         android:dropDownWidth="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"
+        android:dropDownVerticalOffset="35dp"
         app:layout_constraintLeft_toLeftOf="@+id/tv_years"
         app:layout_constraintTop_toBottomOf="@+id/tv_select" />
 

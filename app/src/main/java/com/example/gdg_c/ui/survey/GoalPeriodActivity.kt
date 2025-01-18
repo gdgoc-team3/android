@@ -24,6 +24,10 @@ class GoalPeriodActivity : AppCompatActivity() {
         binding = ActivityGoalPeriodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val birthDate = intent.getStringExtra("birth") ?: "생년월일 없음"
+        val major = intent.getStringExtra("major") ?: "전공 없음"
+        val desiredJob = intent.getStringExtra("desiredJob") ?: "직업 없음"
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -39,6 +43,9 @@ class GoalPeriodActivity : AppCompatActivity() {
 
             val intent = Intent(this, NameActivity::class.java).apply {
                 putExtra("targetEmploymentPeriod", targetEmploymentPeriod)
+                putExtra("birth", birthDate)
+                putExtra("major", major)
+                putExtra("desiredJob", desiredJob)
             }
             startActivity(intent)
         }

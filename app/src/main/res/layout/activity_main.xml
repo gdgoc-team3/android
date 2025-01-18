@@ -24,6 +24,7 @@
         style="@style/BottomNavigationStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_nav"
         android:paddingBottom="15dp"
         app:itemRippleColor="@null"
         app:labelVisibilityMode="labeled"

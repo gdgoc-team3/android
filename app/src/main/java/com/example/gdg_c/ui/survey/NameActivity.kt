@@ -18,6 +18,8 @@ class NameActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_name)
 
+        val targetEmploymentPeriod = intent.getIntExtra("targetEmploymentPeriod", 0)
+
         binding = ActivityNameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -28,15 +30,18 @@ class NameActivity : AppCompatActivity() {
         }
 
         binding.ivNextBtn.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
+
+            val nickname = binding.etNickname.text.toString()
+
+            val intent = Intent(this, SettingActivity::class.java).apply {
+                putExtra("nickname", nickname)
+                putExtra("targetEmploymentPeriod", targetEmploymentPeriod)
+            }
             startActivity(intent)
         }
 
         binding.ivBack.setOnClickListener {
             finish()
         }
-        
-
-
     }
 }

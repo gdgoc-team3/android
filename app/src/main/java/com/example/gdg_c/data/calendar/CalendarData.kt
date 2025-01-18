@@ -9,7 +9,7 @@ data class CalendarData(
     val days: MutableList<CalendarDay>
 ) {
     // 연과 월을 가지고 시작 요일을 구하는 함수
-    private fun getFirstDayOfMonth(year: Int, month: Int): Int {
+    private fun getFirstDayOfMonth(): Int {
         // Calendar 객체 생성
         val calendar = Calendar.getInstance()
 
@@ -35,8 +35,8 @@ data class CalendarData(
     }
 
     // 시작 요일을 가지고 null 값을 days 에 넣어주는 함수
-    fun addNullDays(year: Int, month: Int) {
-        val addDays = getFirstDayOfMonth(year, month)
+    fun addNullDays() {
+        val addDays = getFirstDayOfMonth()
 
         for (i in 0 until addDays) {
             days.add(0, CalendarDay(null, null))
